@@ -1,9 +1,4 @@
-package com.example.network.github;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.http.GET;
+package com.example.network.api;
 
 public interface GithubService {
 //    @GET("user/{user}/repos")
