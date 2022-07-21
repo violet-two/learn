@@ -26,7 +26,6 @@ public class PicLoadActivity extends AppCompatActivity {
 
     public void loadPic(View view) {
         ImageView imageView = findViewById(R.id.iv_result_image);
-        int i = 0;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(getResources(), R.mipmap.a,options);
