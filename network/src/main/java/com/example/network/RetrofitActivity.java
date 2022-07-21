@@ -58,6 +58,7 @@ public class RetrofitActivity extends AppCompatActivity {
                     try {
                         Log.d(TAG, "json: "+response.body().string());
                         String result = response.body().string();
+                        Log.d(TAG, "result: "+result);
                         Gson gson = new Gson();
                         JsonResult jsonResult = gson.fromJson(result, JsonResult.class);
                         updateList(jsonResult);
