@@ -56,7 +56,7 @@ public class RetrofitActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: "+response.code());
                 if(response.code()==HTTP_OK){
                     try {
-                        Log.d(TAG, "json: "+response.body().string());
+//                        Log.d(TAG, "json: "+response.body().string());
                         String result = response.body().string();
                         Log.d(TAG, "result: "+result);
                         Gson gson = new Gson();
