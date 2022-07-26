@@ -70,18 +70,19 @@ public class cameraActivity extends AppCompatActivity implements View.OnClickLis
     //定义CameraCaptureSession 成员变量
     private CameraCaptureSession cameraCaptureSession;
     private ImageReader imageReader;
-    private final TextureView.SurfaceTextureListener mSurfaceTextureListener = new TextureView.SurfaceTextureListener() {
+    private CameraManager manager;
+    private TextureView.SurfaceTextureListener mSurfaceTextureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surfaceTexture, int width, int height) {
             //当TextureView可用时，打开摄像头
-            openCamera(width, height);
+            openCamera(mCameraId,width, height);
         }
-
+        //SurfaceTexture当的缓冲区大小更改时调用。
         @Override
         public void onSurfaceTextureSizeChanged(@NonNull SurfaceTexture surfaceTexture, int width, int height) {
             configureTransform(width, height);
         }
-
+        //SurfaceTexture当指定的即将被销毁时调用
         @Override
         public boolean onSurfaceTextureDestroyed(@NonNull SurfaceTexture surfaceTexture) {
             return true;
@@ -124,11 +125,13 @@ public class cameraActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         rootLayout = findViewById(R.id.root);
+        //请求摄像头权限
         requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x123);
         findViewById(R.id.btn_change_camera).setOnClickListener(this);
     }
 
     @Override
+    //请求权限的回调函数
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 0x123 && grantResults.length == 1
@@ -209,14 +212,15 @@ public class cameraActivity extends AppCompatActivity implements View.OnClickLis
         else if (Surface.ROTATION_180 == rotation) {
             matrix.postRotate(180, centerX, centerY);
         }
+        //控制Camera显示范围
         textureView.setTransform(matrix);
     }
 
     //打开摄像头
-    private void openCamera(int width, int height) {
+    private void openCamera(String mCameraId,int width, int height) {
         setUpCameraOutputs(width, height);
         configureTransform(width, height);
-        CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try {
             //如果用户没有授权摄像头,则直接返回
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -231,6 +235,7 @@ public class cameraActivity extends AppCompatActivity implements View.OnClickLis
         }
 
     }
+
 
 
     private void createCameraPreviewSession() {
@@ -276,6 +281,7 @@ public class cameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    //相机参数的设置
     private void setUpCameraOutputs(int width, int height) {
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try {
@@ -321,6 +327,7 @@ public class cameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    //根据摄像头的方向和屏幕方向设置预览的方向以及尺寸
     private Size chooseOptimalSize(Size[] choices, int width, int height, Size aspectRatio) {
         //收集摄像头支持的大过预览Surface的分辨率
         List<Size> bigEnough = new ArrayList<>();
@@ -342,8 +349,15 @@ public class cameraActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        mCameraId = mCameraId=="0"?"1":"0";
-//        openCamera(0, 0);
+       switch (view.getId()){
+           case R.id.btn_change_camera:
+//               mCameraId = mCameraId=="0"?"1":"0";
+               break;
+           case R.id.btn_close_camera:
+               break;
+           case R.id.btn_open_camera:
+               break;
+       }
 
     }
 }
