@@ -127,7 +127,7 @@ public class cameraActivity extends AppCompatActivity implements View.OnClickLis
         rootLayout = findViewById(R.id.root);
         //请求摄像头权限
         requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x123);
-        findViewById(R.id.btn_change_camera).setOnClickListener(this);
+//        findViewById(R.id.capture).setOnClickListener(this);
     }
 
     @Override
@@ -349,15 +349,20 @@ public class cameraActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-       switch (view.getId()){
-           case R.id.btn_change_camera:
-//               mCameraId = mCameraId=="0"?"1":"0";
-               break;
-           case R.id.btn_close_camera:
-               break;
-           case R.id.btn_open_camera:
-               break;
-       }
 
     }
+
+//    @Override
+//    public void onClick(View view) {
+//       switch (view.getId()){
+//           case R.id.btn_change_camera:
+////               mCameraId = mCameraId=="0"?"1":"0";
+//               break;
+//           case R.id.btn_close_camera:
+//               break;
+//           case R.id.btn_open_camera:
+//               break;
+//       }
+//
+//    }
 }

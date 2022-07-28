@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Learn">
         <activity
-            android:name=".progress.RatingBarActivity"
+            android:name=".recyclerview.RecyclerViewActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

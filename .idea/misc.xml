@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidCode/learn/aaa/src/main/res/layout/activity_main.xml" value="0.21979166666666666" />
         <entry key="..\:/AndroidCode/learn/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidCode/learn/event/src/main/res/layout/activity_cal_prime_number.xml" value="0.1875" />
         <entry key="..\:/AndroidCode/learn/event/src/main/res/layout/activity_main.xml" value="0.1875" />
@@ -23,7 +24,10 @@
         <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/layout/activity_my_button.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/layout/activity_progress_bar.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/layout/activity_rating_bar.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/layout/activity_recyler_view.xml" value="0.17391304347826086" />
         <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/layout/activity_seek_bar.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/layout/item_list_view.xml" value="0.33" />
+        <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/menu/menu.xml" value="0.19010416666666666" />
       </map>
     </option>
   </component>
