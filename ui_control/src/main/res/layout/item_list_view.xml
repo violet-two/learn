@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="90dp">
     <ImageView
-        android:id="@+id/list_view_icon"
+        android:id="@+id/icon"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_margin="10dp"
@@ -11,12 +11,12 @@
         android:src="@mipmap/pic_01" />
 
     <TextView
-        android:id="@+id/list_view_title"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:textColor="@color/black"
-        android:layout_toRightOf="@+id/list_view_icon"
+        android:layout_toRightOf="@+id/icon"
         android:text="我是标题" />
 
 </RelativeLayout>
