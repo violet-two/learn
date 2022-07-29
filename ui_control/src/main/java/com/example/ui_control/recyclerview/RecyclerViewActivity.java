@@ -49,7 +49,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 //在这里面去执行刷新数据的操作
                 ItemBean data = new ItemBean();
                 data.title="我是新添加的数据";
-                data.icon=R.mipmap.pic_02;
+                data.icon=R.mipmap.pic_08;
                 mData.add(0,data);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -93,7 +93,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                                 //这里加载数据，同样需要在子线程中完成
                                 ItemBean data = new ItemBean();
                                 data.title="我是新添加的数据";
-                                data.icon=R.mipmap.pic_02;
+                                data.icon=R.mipmap.pic_10;
                                 mData.add(data);
                                 //更新列表
                                 listViewAdapter.notifyDataSetChanged();
