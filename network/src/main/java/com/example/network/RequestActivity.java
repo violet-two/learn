@@ -1,10 +1,15 @@
 package com.example.network;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.network.api.API;
@@ -28,14 +33,28 @@ import retrofit2.Retrofit;
 
 public class RequestActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE = 1;
     private static final String TAG = "RequestActivity";
     private API api;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
         api = RetrofitManager.getRetrofit().create(API.class);
+        int permission = checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+        if(permission!= PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE) {
+            //aa
+        }
     }
 
     public void getWithParams(View view) {
@@ -128,8 +147,8 @@ public class RequestActivity extends AppCompatActivity {
 
     public void postFile(View view) {
         File file = new File("/storage/emulated/0/Download/a.jpg");
-        RequestBody body = RequestBody.create(MediaType.parse("image/jpeg"),file);
-        MultipartBody.Part part = MultipartBody.Part.createFormData("file","",body);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
         Call<PostFileResult> task = api.postFile(part);
         task.enqueue(new Callback<PostFileResult>() {
             @Override

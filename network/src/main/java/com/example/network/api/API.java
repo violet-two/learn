@@ -31,6 +31,7 @@ public interface API {
 
     @POST("/post/string")
     Call<PostWithParamsResult> postWithParams(@Query("string") String content);
+
     @POST
     Call<PostWithParamsResult> postWithUrl(@Url String url);
 
