@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyView">
+        <attr name="rect_color" format="color"></attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="EditTextWithClear">
+        <attr name="clearIcon" format="reference"></attr>
+    </declare-styleable>
+</resources>

@@ -7,6 +7,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import ws.com.glide.lifecycle.MyLifecycleFragment;
 import ws.com.glide.options.GlideApp;
 
 
@@ -98,5 +101,11 @@ public class MainActivity extends AppCompatActivity {
         for(Map.Entry<String,String> entry : map.entrySet()){
             Log.i("TAG", "testLinkHashMap: "+entry.getKey()+":"+entry.getValue());
         }
+//        MyLifecycleFragment myLifecycleFragment = new MyLifecycleFragment();
+//        FragmentManager fm = getSupportFragmentManager();
+//        fm.beginTransaction()
     }
+
+
+
 }
