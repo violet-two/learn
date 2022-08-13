@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import com.example.ui_control.bean.Bubble;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -39,6 +38,7 @@ public class BubbleSurfaceView extends SurfaceView implements SurfaceHolder.Call
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5f);
         changeDiscretePathEffect(0f, 0f);
+        getHolder().addCallback(this);
     }
 
     @Override
@@ -51,57 +51,61 @@ public class BubbleSurfaceView extends SurfaceView implements SurfaceHolder.Call
             bubbleList.add(bubble);
         }
         if (bubbleList.size() > 30) bubbleList.remove(0);
-        init();
         return super.onTouchEvent(event);
     }
 
-    public void init() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            if (getHolder().getSurface().isValid()) {
-                                Canvas canvas = getHolder().lockCanvas();
-                                try {
-                                    canvas.drawColor(Color.BLACK);
-                                } catch (Exception e) {
-                                }
-                                synchronized (bubbleList) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+    private InitViewThread initViewThread;
+
+    class InitViewThread extends Thread {
+        private boolean done;
+
+        @Override
+        public void run() {
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    while (!done) {
+                        if (getHolder().getSurface().isValid()) {
+                            Canvas canvas = getHolder().lockCanvas();
+                            canvas.drawColor(Color.BLACK);
+                            synchronized (bubbleList) {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //                           List<Bubble> bubbleList2 =bubbleList;
-                                        bubbleList.stream().filter(bubble -> {
-                                            if (bubble.getRadius() < 3000)
-                                                return true;
-                                            return false;
-                                        }).forEach(bubble -> {
-                                            paint.setColor(bubble.getColor());
-                                            float radius = bubble.getRadius();
-                                            try {
-                                                canvas.drawCircle(bubble.getX(), bubble.getY(), radius, paint);
-                                            } catch (Exception e) {
-                                            }
-                                            radius += 10f;
-                                            bubble.setRadius(radius);
-                                        });
-                                    }
+                                    bubbleList.stream().filter(bubble -> {
+                                        if (bubble.getRadius() < 3000)
+                                            return true;
+                                        return false;
+                                    }).forEach(bubble -> {
+                                        paint.setColor(bubble.getColor());
+                                        float radius = bubble.getRadius();
+                                        canvas.drawCircle(bubble.getX(), bubble.getY(), radius, paint);
+                                        radius += 10f;
+                                        bubble.setRadius(radius);
+                                    });
                                 }
-                                try {
-                                    getHolder().unlockCanvasAndPost(canvas);
-                                } catch (Exception e) {
-                                }
+                            }
+                            try {
+                                getHolder().unlockCanvasAndPost(canvas);
+                                //解决了活动卡顿问题，应该为解决了线程问题
+                                Thread.sleep(10);
+                            } catch (Exception e) {
                             }
                         }
                     }
-                }, 0, 1000);
-            }
-        }).start();
+                }
+            }, 0, 100);
+        }
+
+        void exitAndWait() throws InterruptedException {
+            done = true;
+        }
     }
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
+        initViewThread = new InitViewThread();
+        initViewThread.start();
     }
 
     @Override
@@ -111,6 +115,11 @@ public class BubbleSurfaceView extends SurfaceView implements SurfaceHolder.Call
 
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
-
+        try {
+            initViewThread.exitAndWait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        initViewThread = null;
     }
 }
