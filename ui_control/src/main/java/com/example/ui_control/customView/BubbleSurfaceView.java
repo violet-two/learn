@@ -62,11 +62,13 @@ public class BubbleSurfaceView extends SurfaceView implements SurfaceHolder.Call
 
         @Override
         public void run() {
+            //定义计时器
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
                     while (!done) {
                         if (getHolder().getSurface().isValid()) {
+                            //锁定surfaceView，并返回canvas
                             Canvas canvas = getHolder().lockCanvas();
                             canvas.drawColor(Color.BLACK);
                             synchronized (bubbleList) {
@@ -86,6 +88,7 @@ public class BubbleSurfaceView extends SurfaceView implements SurfaceHolder.Call
                                 }
                             }
                             try {
+                                //解锁canvas，并渲染当前图像
                                 getHolder().unlockCanvasAndPost(canvas);
                                 //解决了活动卡顿问题，应该为解决了线程问题
                                 Thread.sleep(10);
@@ -99,9 +102,11 @@ public class BubbleSurfaceView extends SurfaceView implements SurfaceHolder.Call
 
         void exitAndWait() throws InterruptedException {
             done = true;
+            join();
         }
     }
 
+    //surfaceView创建时回调该方法
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
         initViewThread = new InitViewThread();
@@ -112,7 +117,7 @@ public class BubbleSurfaceView extends SurfaceView implements SurfaceHolder.Call
     public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) {
 
     }
-
+    //surfaceView销毁时回调该方法
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
         try {

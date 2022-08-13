@@ -6,5 +6,6 @@
         <domain includeSubdomains="true">142.251.43.10</domain>
         <domain includeSubdomains="true">10.0.2.2</domain>
         <domain includeSubdomains="true">10.0.2.15</domain>
+        <domain includeSubdomains="true">www.baidu.com</domain>
     </domain-config>
 </network-security-config>
