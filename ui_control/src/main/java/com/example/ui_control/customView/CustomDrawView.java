@@ -168,14 +168,19 @@ public class CustomDrawView extends View implements LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void startRotating() {
-        new Timer().schedule(new TimerTask() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                mAngle += 5f;
-                //重新绘图
-                invalidate();
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        mAngle += 5f;
+                        //重新绘图
+                        invalidate();
+                    }
+                }, 0, 100);
             }
-        }, 0, 100);
+        }).start();
     }
 
     public float toRadians(float radians) {

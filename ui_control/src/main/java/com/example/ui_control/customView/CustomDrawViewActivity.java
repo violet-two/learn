@@ -15,7 +15,5 @@ public class CustomDrawViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_view_draw);
-        CustomDrawView myView = findViewById(R.id.myView);
-        getLifecycle().addObserver(myView);
     }
 }
