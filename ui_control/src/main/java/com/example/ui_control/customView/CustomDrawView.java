@@ -25,7 +25,6 @@ import java.util.TimerTask;
 import kotlinx.coroutines.Job;
 
 public class CustomDrawView extends View implements LifecycleObserver {
-    private Job rotatingJob = null;
     private float mAngle = 10f;
     private float mWidth = 0f;
     private float mHeight = 0f;
@@ -154,7 +153,7 @@ public class CustomDrawView extends View implements LifecycleObserver {
             sineWaveSamplesPath.quadTo(x,y,x,y);
         }
         canvas.drawPath(sineWaveSamplesPath,vectorLinePaint);
-        canvas.drawTextOnPath("沈嘉",sineWaveSamplesPath,100f,0f,textPaint);
+        canvas.drawTextOnPath("hello world!",sineWaveSamplesPath,100f,0f,textPaint);
     }
 
     //绘制斜角
@@ -177,6 +176,11 @@ public class CustomDrawView extends View implements LifecycleObserver {
                         mAngle += 5f;
                         //重新绘图
                         invalidate();
+                        try {
+                            Thread.sleep(60);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, 0, 100);
             }

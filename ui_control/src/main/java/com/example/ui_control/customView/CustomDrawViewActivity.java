@@ -1,11 +1,8 @@
 package com.example.ui_control.customView;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleObserver;
 
 import com.example.ui_control.R;
 

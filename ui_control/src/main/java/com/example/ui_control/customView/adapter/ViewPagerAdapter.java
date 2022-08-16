@@ -22,11 +22,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return ViewPagerFragment.newInstance(position + 1);
     }
 
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return super.getPageTitle(position);
-    }
+//    @Nullable
+//    @Override
+//    public CharSequence getPageTitle(int position) {
+//        return super.getPageTitle(position);
+//    }
 
     @Override
     public int getCount() {
