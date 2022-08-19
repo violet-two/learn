@@ -71,10 +71,10 @@ public abstract class RecyclerViewBaseAdapter extends RecyclerView.Adapter<Recyc
 //            });
         }
 
-        public void setData(ItemBean itemBean, int position) {
-            this.mPosition = position;
-            mIcon.setImageResource(itemBean.icon);
-            mTitle.setText(itemBean.title);
-        }
+            public void setData(ItemBean itemBean, int position) {
+                this.mPosition = position;
+                mIcon.setImageResource(itemBean.icon);
+                mTitle.setText(itemBean.title);
+            }
     }
 }
