@@ -9,12 +9,16 @@
         <entry key="..\:/AndroidCode/learn/event/src/main/res/layout/activity_main.xml" value="0.1875" />
         <entry key="..\:/AndroidCode/learn/event/src/main/res/layout/activity_my_button.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidCode/learn/event/src/main/res/layout/activity_timer.xml" value="0.1875" />
+        <entry key="..\:/AndroidCode/learn/framework/src/main/res/layout/activity_mvc.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidCode/learn/framework/src/main/res/layout/activity_mvp.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidCode/learn/framework/src/main/res/layout/item_mvp.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidCode/learn/glide/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
         <entry key="..\:/AndroidCode/learn/hot-restart/src/main/res/layout/activity_main.xml" value="0.16168478260869565" />
         <entry key="..\:/AndroidCode/learn/io/src/main/res/layout/activity_matrix.xml" value="0.1" />
         <entry key="..\:/AndroidCode/learn/media/src/main/res/layout/activity_camera.xml" value="0.1" />
         <entry key="..\:/AndroidCode/learn/media/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/AndroidCode/learn/media/src/main/res/layout/activity_surface_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/AndroidCode/learn/mvvm_dome/src/main/res/layout/activity_main.xml" value="0.3515625" />
         <entry key="..\:/AndroidCode/learn/network/src/main/res/layout/activity_main.xml" value="0.18645833333333334" />
         <entry key="..\:/AndroidCode/learn/network/src/main/res/layout/activity_okhttp.xml" value="0.23645833333333333" />
         <entry key="..\:/AndroidCode/learn/network/src/main/res/layout/activity_pic_load.xml" value="0.1" />
@@ -24,6 +28,9 @@
         <entry key="..\:/AndroidCode/learn/network/src/main/res/layout/activity_retrofit.xml" value="0.25" />
         <entry key="..\:/AndroidCode/learn/network/src/main/res/layout/item_get_text.xml" value="0.25" />
         <entry key="..\:/AndroidCode/learn/network/src/main/res/layout/item_json_result.xml" value="0.19067028985507245" />
+        <entry key="..\:/AndroidCode/learn/rxjava/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/AndroidCode/learn/rxjava/src/main/res/layout/activity_main.xml" value="0.19583333333333333" />
+        <entry key="..\:/AndroidCode/learn/rxjava2/src/main/res/layout/activity_main.xml" value="0.19583333333333333" />
         <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.1635" />
         <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/drawable/ic_baseline_face_24.xml" value="0.2005" />
         <entry key="..\:/AndroidCode/learn/ui_control/src/main/res/layout/activity_custom_view.xml" value="0.1" />
