@@ -58,34 +58,35 @@ public class MainActivity extends AppCompatActivity {
         Observable.just(PATH)
                 // TODO 第三步
                 //需要：001，图片下载需求
-                .map(new Function<String, Bitmap>() {
-                    @Override
-                    public Bitmap apply(String path) throws Throwable {
-                        try {
-                            URL url = new URL(path);
-                            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                            httpURLConnection.setConnectTimeout(5000);
-                            int responseCode = httpURLConnection.getResponseCode();
-                            if (responseCode == httpURLConnection.HTTP_OK) {
-                                InputStream inputStream = httpURLConnection.getInputStream();
-                                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                                return bitmap;
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                .map(path -> {
+                    try {
+                        URL url = new URL(path);
+                        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                        httpURLConnection.setConnectTimeout(5000);
+                        int responseCode = httpURLConnection.getResponseCode();
+                        if (responseCode == httpURLConnection.HTTP_OK) {
+                            InputStream inputStream = httpURLConnection.getInputStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                            return bitmap;
                         }
-                        return null;
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+                    return null;
                 })
-                .map(new Function<Bitmap, Bitmap>() {
-                    @Override
-                    public Bitmap apply(Bitmap bitmap) throws Throwable {
-                        Paint paint = new Paint();
-                        paint.setColor(Color.RED);
-                        paint.setTextSize(20);
-                        Bitmap bitmap1 = drawTextToBitMap(bitmap,"我是su",paint,88,88);
-                        return bitmap1;
-                    }
+                .map(bitmap -> {
+                    Paint paint = new Paint();
+                    paint.setColor(Color.RED);
+                    paint.setTextSize(20);
+                    Bitmap bitmap1 = drawTextToBitMap(bitmap,"我是su",paint,88,88);
+                    return bitmap1;
+                })
+                .map(bitmap -> {
+                    Paint paint = new Paint();
+                    paint.setColor(Color.RED);
+                    paint.setTextSize(20);
+                    Bitmap bitmap1 = drawTextToBitMap(bitmap,"我是su",paint,88,88);
+                    return 1;
                 })
                 //给上面分配异步线程
                 .subscribeOn(Schedulers.io())
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 //关联：观察者设计模式 关联起点和终点 == 订阅
                 .subscribe(
                         //终点
-                        new Observer<Bitmap>() {
+                        new Observer<Integer>() {
                             // TODO 第一步
                             //订阅成功
                             @Override
@@ -107,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
                             // TODO 第四步
                             //上一层给我的响应
                             @Override
-                            public void onNext(@NonNull Bitmap s) {
-                                image.setImageBitmap(s);
+                            public void onNext(@NonNull Integer s) {
+//                                image.setImageBitmap(s);
                             }
 
                             //链条发生异常
@@ -144,11 +145,6 @@ public class MainActivity extends AppCompatActivity {
     public void action(View view) {
         String[] strings = {"AAAA","BBBB","CCCC"};
         Observable.fromArray(strings)
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Throwable {
-                        Log.d(TAG, "accept: "+s);
-                    }
-                });
+                .subscribe(s -> Log.d(TAG, "accept: "+s));
     }
 }
